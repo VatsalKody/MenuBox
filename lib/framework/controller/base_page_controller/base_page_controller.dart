@@ -1,20 +1,29 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:revisiting_kody_test_ui/framework/repository/base_page_repository/base_page_model.dart';
 import 'package:revisiting_kody_test_ui/ui/home/mobile/home_mobile.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/app_constants/app_constants.dart';
+import 'package:revisiting_kody_test_ui/ui/utils/common_widgets/pending_screen.dart';
 
-class BasePageController {
-  BasePageController._();
+final basePageController = ChangeNotifierProvider<BasePageController>((ref) => BasePageController(),);
 
-  static List<BasePageModel> navBarItems = [
+ class BasePageController extends ChangeNotifier {
+  BasePageController();
+
+  List<BasePageModel> navBarItems = [
     BasePageModel(id: 0, label: AppConstants.home, icon: AppConstants.homeIcon),
-    BasePageModel(id: 1, label: AppConstants.home, icon: AppConstants.homeIcon),
-    BasePageModel(id: 2, label: AppConstants.home, icon: AppConstants.homeIcon),
-    BasePageModel(id: 3, label: AppConstants.home, icon: AppConstants.homeIcon),
+    BasePageModel(id: 1, label: AppConstants.order, icon: AppConstants.orderIcon),
+    BasePageModel(id: 2, label: AppConstants.cart, icon: AppConstants.cartIcon),
+    BasePageModel(id: 3, label: AppConstants.profile, icon: AppConstants.profileIcon),
   ];
 
-  static const List<Widget> bodyItems = [HomeMobile(), HomeMobile(), HomeMobile(), HomeMobile()];
+  List<Widget> bodyItems = [const HomeMobile(), const PendingScreen(), const PendingScreen(), const PendingScreen()];
 
-  static int navItemLength = AppConstants.numberOfNavBarItems;
-  static int navItem = AppConstants.startNavIndex;
+  int navItemLength = AppConstants.numberOfNavBarItems;
+  int navItem = AppConstants.startNavIndex;
+
+  void updateNavItem (int index) {
+    navItem = index;
+    notifyListeners();
+  }
 }

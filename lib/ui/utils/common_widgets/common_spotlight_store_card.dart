@@ -12,14 +12,15 @@ class CommonSpotLightStoreCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12.0),
       child: Card(
+        color: AppColors.clrWhite,
         shadowColor: AppColors.clrGrey,
-        elevation: 2,
+        elevation: 3,
         child: Column(
-          spacing: 5,
+          spacing: 2,
           children: [
             CropImage(imagePath: item.banner, height: 125, width: 375),
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(7.0),
               child: Column(
                 children: [
                   Row(
@@ -40,7 +41,7 @@ class CommonSpotLightStoreCard extends StatelessWidget {
                       Row(
                         spacing: 7,
                         children: [
-                          Icon(Icons.star, color: AppColors.clrBlack),
+                          Icon(Icons.star, color: AppColors.clrBlack, size: 19,),
                           CommonText(text: item.rating),
                           CommonText(text: '(${item.review}+)', fontColor: AppColors.clrGrey600),
                         ],
@@ -48,7 +49,7 @@ class CommonSpotLightStoreCard extends StatelessWidget {
                       Row(
                         spacing: 7,
                         children: [
-                          Icon(Icons.access_time_rounded, color: AppColors.clrBlack),
+                          Icon(Icons.access_time_rounded, color: AppColors.clrBlack, size: 19,),
                           CommonText(text: item.deliveryTime, fontColor: AppColors.clrGrey600),
                         ],
                       ),
@@ -67,7 +68,7 @@ class CommonSpotLightStoreCard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.location_on, color: AppColors.clrBlack),
+                          Icon(Icons.location_on, color: AppColors.clrBlack, size: 19,),
                           CommonText(text: item.distance, fontColor: AppColors.clrGrey600),
                         ],
                       ),
@@ -81,15 +82,16 @@ class CommonSpotLightStoreCard extends StatelessWidget {
                 color: AppColors.clrGreen,
                 borderRadius: const BorderRadius.vertical(bottom: Radius.circular(12.0)),
               ),
-              height: 30,
+              height: MediaQuery.of(context).size.height*0.03,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  CommonText(text: item.offer.title, fontColor: AppColors.clrWhite),
+                  CommonText(text: item.offer.title, fontColor: AppColors.clrWhite, fontSize: 13,),
                   CommonText(
                     text: item.offer.code,
                     fontColor: AppColors.clrWhite,
                     fontWeight: FontWeight.bold,
+                    fontSize: 13,
                   ),
                 ],
               ),

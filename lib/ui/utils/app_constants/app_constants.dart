@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class AppConstants {
   AppConstants._();
 
+  static const String homeJson = 'assets/json/home.json';
+
   static const int numberOfNavBarItems = 4;
-  static const int startNavIndex = 0;
+  static int startNavIndex = 0;
 
   static late Size size;
 
@@ -45,7 +47,7 @@ class AppConstants {
   static const String strExcitingOffersRightTitle = 'View All';
 
   static const String strSpotlightLeftTitle = 'In The Spotlight';
-  static const String strSpotlightType = 'Spotlight';
+  static const String strSpotlightType = 'Spotlights';
   static const String strSpotlightRightTitle = 'View All';
 
   static const String strAllStoresLeftTitle = 'All Stores';
@@ -60,5 +62,6 @@ class AppConstants {
   static const String strFilledViewAllButton = 'View All Restaurants';
 
   static const String strYourLocation = 'Your Location';
-  static const String strPunjabIndia = 'Punjab, India';
+  static const String strPunjab = 'Punjab, ';
+  static const String strIndia = 'India';
 }

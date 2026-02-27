@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:revisiting_kody_test_ui/framework/controller/home_controller/home_controller.dart';
 import 'package:revisiting_kody_test_ui/framework/repository/home_repository/existing_offer_model.dart';
 import 'package:revisiting_kody_test_ui/ui/home/helper/view_all.dart';
@@ -8,12 +9,13 @@ import 'package:revisiting_kody_test_ui/ui/utils/common_widgets/common_existing_
 import 'package:revisiting_kody_test_ui/ui/utils/common_widgets/common_row_title.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/themes/app_colors.dart';
 
-class CommonExistingOffer extends StatelessWidget {
+class CommonExistingOffer extends ConsumerWidget {
   const CommonExistingOffer({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    int n = (HomeController.existingOffers.length ~/ 2).ceil();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final excitingOffersController = ref.read(homeController);
+    int n = (excitingOffersController.existingOffers!.length ~/ 2).ceil();
     CommonPrint.printFunction(debugTypeIdentifier: 'Common Exciting Offers length is $n');
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20),
@@ -26,7 +28,7 @@ class CommonExistingOffer extends StatelessWidget {
             onTapFunction: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ViewAll(type: 'Spotlights')),
+                MaterialPageRoute(builder: (context) => const ViewAll(type: 'Exciting Offers')),
               );
             },
           ),
@@ -38,13 +40,13 @@ class CommonExistingOffer extends StatelessWidget {
               shrinkWrap: true,
               itemExtent: 300,
               children: List.generate(n, (index) {
-                ExistingOffer item1 = HomeController.existingOffers[2 * index];
+                ExistingOffer item1 = excitingOffersController.existingOffers![2 * index];
                 ExistingOffer? item2 = ((2 * index + 1) < 2 * n)
-                    ? HomeController.existingOffers[2 * index + 1]
+                    ? excitingOffersController.existingOffers![2 * index + 1]
                     : null;
                 CommonPrint.printFunction(
                   debugTypeIdentifier:
-                      'Existing Offers item1 = ${item1.name} & item2 is ${item2!.name}',
+                      'Exciting Offers item1 = ${item1.name} & item2 is ${item2!.name}',
                 );
                 return Padding(
                   padding: const EdgeInsets.only(right: 20.0),

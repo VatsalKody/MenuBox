@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:revisiting_kody_test_ui/framework/controller/home_controller/home_controller.dart';
 import 'package:revisiting_kody_test_ui/framework/repository/home_repository/store_model.dart';
 import 'package:revisiting_kody_test_ui/ui/home/helper/custom_filled_button.dart';
@@ -9,11 +10,12 @@ import 'package:revisiting_kody_test_ui/ui/utils/common_widgets/common_row_title
 import 'package:revisiting_kody_test_ui/ui/utils/common_widgets/common_text.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/themes/app_colors.dart';
 
-class StoreBuilder extends StatelessWidget {
+class StoreBuilder extends ConsumerWidget {
   const StoreBuilder({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final storeController = ref.read(homeController);
     return Container(
       padding: const EdgeInsets.all(12),
       width: 375,
@@ -24,9 +26,9 @@ class StoreBuilder extends StatelessWidget {
           ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: min(5, HomeController.stores.length),
+            itemCount: min(5, storeController.stores!.length),
             itemBuilder: (context, index) {
-              Store item = HomeController.stores[index];
+              Store item = storeController.stores![index];
               CommonPrint.printFunction(debugTypeIdentifier: item.banner);
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
@@ -140,8 +142,12 @@ class StoreBuilder extends StatelessWidget {
                                       fontColor: AppColors.clrGrey600,
                                     ),
                                     CommonText(
-                                      text: item.minOrder + AppConstants.strAllStoresINRRightTitle,
+                                      text: item.minOrder,
                                       fontWeight: FontWeight.bold,
+                                    ),
+                                    CommonText(
+                                      text: AppConstants.strAllStoresINRRightTitle,
+                                      fontColor: AppColors.clrGrey600,
                                     ),
                                   ],
                                 ),

@@ -31,7 +31,7 @@ class CommonRowTitle extends StatelessWidget {
           spacing: 10,
           children: [
             InkWell(
-              onTap: () => onTapFunction,
+              onTap: () => onTapFunction!(),
               child: CommonText(text: rightTitle ?? '', fontSize: 18),
             ),
             Visibility(visible: icon != null, child: Icon(icon, size: 18)),
