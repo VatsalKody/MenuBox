@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:revisiting_kody_test_ui/framework/controller/home_controller/home_controller.dart';
+import 'package:revisiting_kody_test_ui/ui/utils/app_constants/app_constants.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/common_widgets/common_existing_card.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/common_widgets/common_row_title.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/common_widgets/common_spotlight_store_card.dart';
@@ -12,7 +13,7 @@ class ViewAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<dynamic> itemsList = [];
-    if (type == 'Spotlights' || type == 'Stores') {
+    if (type == AppConstants.strSpotlightType || type == AppConstants.strAllStoresType) {
       itemsList = HomeController.stores;
     } else {
       // exciting offers
@@ -41,14 +42,14 @@ class ViewAll extends StatelessWidget {
               spacing: 20,
               children: [
                 Visibility(
-                  visible: type != 'Exciting Offers',
+                  visible: type != AppConstants.strExcitingOffersLeftTitle,
                   child: Column(
                     children: [
                       CommonRowTitle(
-                        leftTitle: 'Stores',
-                        icon: Icons.filter_alt_outlined,
+                        leftTitle: AppConstants.strAllStoresType,
+                        icon: AppConstants.filterIcon,
                         number: itemsList.length.toString(),
-                        rightTitle: 'Filter',
+                        rightTitle: AppConstants.strExcitingOffersRightTitle,
                       ),
                     ],
                   ),
@@ -61,8 +62,13 @@ class ViewAll extends StatelessWidget {
                     itemCount: itemsList.length,
                     itemBuilder: (context, index) {
                       dynamic item = itemsList[index];
-                      return type == 'Exciting Offers'
-                          ? CommonExistingCard(image: item.image, name: item.name, subtitle: item.subtitle, offerTitle: item.offerTitle)
+                      return type == AppConstants.strExcitingOffersLeftTitle
+                          ? CommonExistingCard(
+                              image: item.image,
+                              name: item.name,
+                              subtitle: item.subtitle,
+                              offerTitle: item.offerTitle,
+                            )
                           : CommonSpotLightStoreCard(item: item);
                     },
                   ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:revisiting_kody_test_ui/ui/base_screen/mobile/base_mobile.dart';
+import 'package:revisiting_kody_test_ui/ui/utils/app_constants/app_constants.dart';
+import 'package:revisiting_kody_test_ui/ui/utils/themes/app_colors.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.black,
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(systemNavigationBarColor: AppColors.clrBlack),
+  );
 
   runApp(const MyApp());
 }
@@ -17,9 +19,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: AppConstants.strApplicationTitle,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.clrDeepPurple),
         useMaterial3: true,
       ),
       home: const BaseMobile(),

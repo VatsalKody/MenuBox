@@ -9,6 +9,7 @@ import 'package:revisiting_kody_test_ui/ui/home/helper/custom_search_bar.dart';
 import 'package:revisiting_kody_test_ui/ui/home/helper/store_builder.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/app_constants/app_constants.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/app_constants/common_print.dart';
+import 'package:revisiting_kody_test_ui/ui/utils/themes/app_colors.dart';
 
 class HomeMobile extends StatefulWidget {
   const HomeMobile({super.key});
@@ -39,7 +40,7 @@ class _HomeMobileState extends State<HomeMobile> {
       children: [
         Container(
           width: AppConstants.size.width,
-          color: Colors.white,
+          color: AppColors.clrWhite,
           child: const Stack(
             children: [
               Column(
@@ -48,17 +49,25 @@ class _HomeMobileState extends State<HomeMobile> {
                 children: [
                   CustomAppBar(),
 
-                  SizedBox(height: 20,),
+                  SizedBox(height: 20),
 
                   CustomCarouselScroll(),
 
                   CategoriesBuilder(),
 
-                  CustomSingleLineLayoutBuilder(leftTitle: 'Recently Ordered on MenuBox', rightTitle: '', listName: 'recentlyOrdered',),
+                  CustomSingleLineLayoutBuilder(
+                    leftTitle: AppConstants.strRecentlyOrderedLeftTitle,
+                    rightTitle: AppConstants.strRecentlyOrderedRightTitle,
+                    listName: AppConstants.strRecentlyOrderedType,
+                  ),
 
                   CommonExistingOffer(),
 
-                  CustomSingleLineLayoutBuilder(leftTitle: 'In The Spotlight', rightTitle: 'View All', listName: 'Spotlight',),
+                  CustomSingleLineLayoutBuilder(
+                    leftTitle: AppConstants.strSpotlightLeftTitle,
+                    rightTitle: AppConstants.strSpotlightRightTitle,
+                    listName: AppConstants.strSpotlightType,
+                  ),
 
                   StoreBuilder(),
                 ],

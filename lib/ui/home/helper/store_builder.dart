@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:revisiting_kody_test_ui/framework/controller/home_controller/home_controller.dart';
 import 'package:revisiting_kody_test_ui/framework/repository/home_repository/store_model.dart';
 import 'package:revisiting_kody_test_ui/ui/home/helper/custom_filled_button.dart';
+import 'package:revisiting_kody_test_ui/ui/utils/app_constants/app_constants.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/app_constants/common_print.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/common_widgets/common_row_title.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/common_widgets/common_text.dart';
+import 'package:revisiting_kody_test_ui/ui/utils/themes/app_colors.dart';
 
 class StoreBuilder extends StatelessWidget {
   const StoreBuilder({super.key});
@@ -18,7 +20,7 @@ class StoreBuilder extends StatelessWidget {
       child: Column(
         spacing: 20,
         children: [
-          const CommonRowTitle(leftTitle: 'All Stores'),
+          const CommonRowTitle(leftTitle: AppConstants.strAllStoresLeftTitle),
           ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
@@ -29,7 +31,7 @@ class StoreBuilder extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Card(
-                  shadowColor: Colors.grey,
+                  shadowColor: AppColors.clrGrey,
                   elevation: 2,
                   child: Column(
                     children: [
@@ -43,25 +45,20 @@ class StoreBuilder extends StatelessWidget {
                               height: 125,
                               width: 375,
                               errorBuilder: (context, error, stackTrace) {
-                                return const CircularProgressIndicator(
-                                  color: Colors.red,
-                                );
+                                return CircularProgressIndicator(color: AppColors.clrRed);
                               },
-                              loadingBuilder:
-                                  (context, child, loadingProgress) {
-                                    return loadingProgress == null
-                                        ? child
-                                        : const CircularProgressIndicator(
-                                            color: Colors.blue,
-                                          );
-                                  },
+                              loadingBuilder: (context, child, loadingProgress) {
+                                return loadingProgress == null
+                                    ? child
+                                    : CircularProgressIndicator(color: AppColors.clrBlue);
+                              },
                             ),
                           ),
                           Positioned(
                             bottom: 10,
                             left: 10,
                             child: CircleAvatar(
-                              backgroundColor: Colors.white,
+                              backgroundColor: AppColors.clrWhite,
                               maxRadius: 40,
                               minRadius: 25,
                               child: Image.network(
@@ -71,17 +68,12 @@ class StoreBuilder extends StatelessWidget {
                                 fit: BoxFit.contain,
                                 errorBuilder: (context, error, stackTrace) {
                                   CommonPrint.printFunction(debugTypeIdentifier: error.toString());
-                                  return const CircularProgressIndicator(
-                                    color: Colors.red,
-                                  );
+                                  return CircularProgressIndicator(color: AppColors.clrRed);
                                 },
-                                loadingBuilder:
-                                    (context, child, loadingProgress) {
+                                loadingBuilder: (context, child, loadingProgress) {
                                   return loadingProgress == null
                                       ? child
-                                      : const CircularProgressIndicator(
-                                    color: Colors.blue,
-                                  );
+                                      : CircularProgressIndicator(color: AppColors.clrBlue);
                                 },
                               ),
                             ),
@@ -99,8 +91,10 @@ class StoreBuilder extends StatelessWidget {
                                 CommonText(text: item.name),
                                 CommonText(
                                   text:
-                                      'Free Delivery Upto ${item.freeDeliveryKm} Km',
-                                  fontColor: Colors.green,
+                                      AppConstants.strAllStoresDeliveryLeftTitle +
+                                      item.freeDeliveryKm +
+                                      AppConstants.strAllStoresDeliveryRightTitle,
+                                  fontColor: AppColors.clrGreen,
                                   fontSize: 13,
                                 ),
                               ],
@@ -111,24 +105,24 @@ class StoreBuilder extends StatelessWidget {
                                 Row(
                                   spacing: 7,
                                   children: [
-                                    const Icon(Icons.star, color: Colors.black),
+                                    Icon(AppConstants.starIcon, color: AppColors.clrBlack),
                                     CommonText(text: item.rating),
                                     CommonText(
-                                      text: '(${item.review}+)',
-                                      fontColor: Colors.grey.shade600,
+                                      text:
+                                          AppConstants.strAllStoresReviewsLeftTitle +
+                                          item.review +
+                                          AppConstants.strAllStoresReviewsRightTitle,
+                                      fontColor: AppColors.clrGrey600,
                                     ),
                                   ],
                                 ),
                                 Row(
                                   spacing: 7,
                                   children: [
-                                    const Icon(
-                                      Icons.access_time_rounded,
-                                      color: Colors.black,
-                                    ),
+                                    Icon(AppConstants.clockIcon, color: AppColors.clrBlack),
                                     CommonText(
                                       text: item.deliveryTime,
-                                      fontColor: Colors.grey.shade600,
+                                      fontColor: AppColors.clrGrey600,
                                     ),
                                   ],
                                 ),
@@ -142,24 +136,21 @@ class StoreBuilder extends StatelessWidget {
                                   spacing: 7,
                                   children: [
                                     CommonText(
-                                      text: 'Min. Order',
-                                      fontColor: Colors.grey.shade600,
+                                      text: AppConstants.strAllStoresMinOrderLeftTitle,
+                                      fontColor: AppColors.clrGrey600,
                                     ),
                                     CommonText(
-                                      text: '${item.minOrder} INR',
+                                      text: item.minOrder + AppConstants.strAllStoresINRRightTitle,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ],
                                 ),
                                 Row(
                                   children: [
-                                    const Icon(
-                                      Icons.location_on,
-                                      color: Colors.black,
-                                    ),
+                                    Icon(AppConstants.locationIcon, color: AppColors.clrBlack),
                                     CommonText(
                                       text: item.distance,
-                                      fontColor: Colors.grey.shade600,
+                                      fontColor: AppColors.clrGrey600,
                                     ),
                                   ],
                                 ),
@@ -169,23 +160,18 @@ class StoreBuilder extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.vertical(
-                            bottom: Radius.circular(12.0),
-                          ),
+                        decoration: BoxDecoration(
+                          color: AppColors.clrGreen,
+                          borderRadius: const BorderRadius.vertical(bottom: Radius.circular(12.0)),
                         ),
                         height: 30,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            CommonText(
-                              text: item.offer.title,
-                              fontColor: Colors.white,
-                            ),
+                            CommonText(text: item.offer.title, fontColor: AppColors.clrWhite),
                             CommonText(
                               text: item.offer.code,
-                              fontColor: Colors.white,
+                              fontColor: AppColors.clrWhite,
                               fontWeight: FontWeight.bold,
                             ),
                           ],

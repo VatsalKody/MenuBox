@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:revisiting_kody_test_ui/framework/controller/home_controller/home_controller.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/common_widgets/crop_image.dart';
+import 'package:revisiting_kody_test_ui/ui/utils/themes/app_colors.dart';
 
 class CustomCarouselScroll extends StatefulWidget {
   const CustomCarouselScroll({super.key});
@@ -54,8 +55,8 @@ class _CustomCarouselScrollState extends State<CustomCarouselScroll> {
               // padding: const EdgeInsets.only(left: 30, right: 30),
               width: isCurrentBanner ? 30 : 6,
               decoration: BoxDecoration(
-                color: isCurrentBanner ? Colors.black : Colors.grey.shade100,
-                border: Border.all(color: Colors.black),
+                color: isCurrentBanner ? AppColors.clrBlack : AppColors.clrGrey100,
+                border: Border.all(color: AppColors.clrBlack),
                 borderRadius: const BorderRadius.horizontal(
                   right: Radius.circular(20),
                   left: Radius.circular(20),

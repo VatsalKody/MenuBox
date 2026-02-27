@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:revisiting_kody_test_ui/framework/controller/home_controller/home_controller.dart';
 import 'package:revisiting_kody_test_ui/framework/repository/home_repository/existing_offer_model.dart';
 import 'package:revisiting_kody_test_ui/ui/home/helper/view_all.dart';
+import 'package:revisiting_kody_test_ui/ui/utils/app_constants/app_constants.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/app_constants/common_print.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/common_widgets/common_existing_card.dart';
 import 'package:revisiting_kody_test_ui/ui/utils/common_widgets/common_row_title.dart';
+import 'package:revisiting_kody_test_ui/ui/utils/themes/app_colors.dart';
 
 class CommonExistingOffer extends StatelessWidget {
   const CommonExistingOffer({super.key});
@@ -19,14 +21,12 @@ class CommonExistingOffer extends StatelessWidget {
         spacing: 10,
         children: [
           CommonRowTitle(
-            leftTitle: 'Exciting Offers',
-            rightTitle: 'See All',
+            leftTitle: AppConstants.strExcitingOffersLeftTitle,
+            rightTitle: AppConstants.strExcitingOffersRightTitle,
             onTapFunction: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const ViewAll(type: 'Spotlights'),
-                ),
+                MaterialPageRoute(builder: (context) => const ViewAll(type: 'Spotlights')),
               );
             },
           ),
@@ -42,7 +42,10 @@ class CommonExistingOffer extends StatelessWidget {
                 ExistingOffer? item2 = ((2 * index + 1) < 2 * n)
                     ? HomeController.existingOffers[2 * index + 1]
                     : null;
-                CommonPrint.printFunction(debugTypeIdentifier: 'Existing Offers item1 = ${item1.name} & item2 is ${item2!.name}');
+                CommonPrint.printFunction(
+                  debugTypeIdentifier:
+                      'Existing Offers item1 = ${item1.name} & item2 is ${item2!.name}',
+                );
                 return Padding(
                   padding: const EdgeInsets.only(right: 20.0),
                   child: Column(
@@ -54,14 +57,14 @@ class CommonExistingOffer extends StatelessWidget {
                         subtitle: item1.subtitle,
                         offerTitle: item1.offerTitle,
                       ),
-                      Divider(color: Colors.grey.shade300),
+                      Divider(color: AppColors.clrGrey300),
                       CommonExistingCard(
                         image: item2.image,
                         name: item2.name,
                         subtitle: item2.subtitle,
                         offerTitle: item2.offerTitle,
                       ),
-                      Divider(color: Colors.grey.shade300),
+                      Divider(color: AppColors.clrGrey300),
                     ],
                   ),
                 );
